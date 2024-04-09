@@ -1,25 +1,11 @@
-CREATE TABLE IF NOT EXISTS champions
+CREATE TABLE champions
 (
-    id
-    INT
-    AUTO_INCREMENT
-    PRIMARY
-    KEY,
-    name
-    VARCHAR
-(
-    255
-) NOT NULL,
-    role VARCHAR
-(
-    255
-) NOT NULL,
-    lore TEXT,
-    image_url VARCHAR
-(
-    255
-)
-    );
+    id        INT AUTO_INCREMENT PRIMARY KEY,
+    name      VARCHAR(255) NOT NULL,
+    role      VARCHAR(255) NOT NULL,
+    lore      TEXT,
+    image_url VARCHAR(255)
+);
 
 INSERT INTO champions (name, role, lore, image_url)
 VALUES ('Jinx', 'Atirador',
