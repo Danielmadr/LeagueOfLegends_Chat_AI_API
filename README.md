@@ -90,7 +90,7 @@ A interface do usuário (UI) do **NeuroChatIA** é construída utilizando concei
 O projeto **NeuroChatIA** foi desenvolvido com a contribuição de:
 
 - **Daniel Martins** - Desenvolvedor Full Stack, especializado em Java e Spring Boot. Contribuiu com a implementação da lógica de negócios, integração com bancos de dados e configuração do Spring Boot.
-- Veja o perfil de Daniel Martins no [GitHub](https://github.com/Danielmadr).
+  Veja o perfil de Daniel Martins no [GitHub](https://github.com/Danielmadr).
 
 - **Yasmin Barcelos** - Desenvolvedor Full Stack, especializado em Java e Spring Boot. Contribuiu com a implementação da lógica de negócios, integração com bancos de dados e configuração do Spring Boot.
-- Veja o perfil de Yasmin Barcelos no [GitHub](https://github.com/yxsbx).
+  Veja o perfil de Yasmin Barcelos no [GitHub](https://github.com/yxsbx).
