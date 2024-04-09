@@ -16,6 +16,35 @@ O projeto **NeuroChatIA** é um sistema que combina os fundamentos da linguagem 
 ## Diagrama Arquitetural
 A seguir, apresentamos o diagrama arquitetural do projeto, destacando a separação das responsabilidades entre as camadas. Desde a interface de usuário até os mecanismos de interação com sistemas externos, passando por adaptadores, casos de uso e as entidades centrais do domínio, cada elemento é estrategicamente posicionado para reforçar a modularidade, a escalabilidade e a manutenibilidade do sistema. Esta estrutura facilita a compreensão de como os componentes colaboram para a realização dos objetivos do software, alinhando-se aos princípios da Clean Architecture.
 
+graph RL;
+  subgraph layer-infra[Infraestrutura];
+    UI("Frontend (UI)") ---> Controller
+    subgraph layer-adpaters[Adaptadores];
+      Controller("Controllers") <--> UC
+      subgraph layer-app[Aplicação];
+        UC(Casos de Uso) <--> layer-entities
+        subgraph layer-entities["Entidades (Domínio)"];
+          Model("Modelos")
+          IPort("Interfaces das Portas (Gateways)")
+        end
+     end
+     Repo("Repositórios") -..-> |implementam| IPort
+     HTTP("Clientes HTTP") -..-> |implementam| IPort
+    end
+    BD("Bancos de Dados SQL") --- Repo
+    EXT("APIs REST de IA") --- HTTP
+  end
+
+classDef infra fill:#a3c9ff,stroke:#00315c,color:#00315c;
+classDef adapters fill:#67dbb1,stroke:#003828,color:#003828;
+classDef ucs fill:#ffb1c1,stroke:#5f112b,color:#5f112b;
+classDef entities fill:#e2c54b,stroke:#3a3000,color:#3a3000;
+
+class BD,EXT,UI infra;
+class Controller,Repo,HTTP adapters;
+class UC ucs;
+class Model,IPort entities;
+
 ## Estrutura de Diretórios do Projeto NeuroChatIA
 
 O projeto **NeuroChatIA** segue uma estrutura de diretórios inspirada nos princípios da Clean Architecture, visando à clara separação de responsabilidades e à promoção da autonomia das camadas em um projeto Spring Boot. Essa abordagem não apenas facilita a manutenção e evolução do código, mas também sustenta a integração e colaboração eficaz entre as diferentes partes da aplicação. A seguir, detalhamos a disposição dos diretórios que compõem a aplicação, cada um desempenhando um papel específico dentro do ecossistema de software:
