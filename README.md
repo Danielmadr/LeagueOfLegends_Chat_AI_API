@@ -84,3 +84,13 @@ A interface do usuário (UI) do **NeuroChatIA** é construída utilizando concei
 - **Estilização com CSS**: Utilizamos folhas de estilo CSS para estilizar os elementos HTML, como cores, fontes, tamanhos e layouts.
 
 - **Interações Dinâmicas com JavaScript**: Incorporamos scripts JavaScript para adicionar comportamentos dinâmicos à interface do usuário, como validação de formulários, carregamento assíncrono de dados e interatividade com elementos da página.
+
+# Contribuidores
+
+O projeto **NeuroChatIA** foi desenvolvido com a contribuição de:
+
+- **Daniel Martins** - Desenvolvedor Full Stack, especializado em Java e Spring Boot. Contribuiu com a implementação da lógica de negócios, integração com bancos de dados e configuração do Spring Boot.
+- Veja o perfil de Daniel Martins no [GitHub](https://github.com/Danielmadr).
+
+- **Yasmin Barcelos** - Desenvolvedor Full Stack, especializado em Java e Spring Boot. Contribuiu com a implementação da lógica de negócios, integração com bancos de dados e configuração do Spring Boot.
+- Veja o perfil de Yasmin Barcelos no [GitHub](https://github.com/yxsbx).
