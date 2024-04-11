@@ -135,3 +135,147 @@ O projeto **NeuroChatIA** foi desenvolvido com a contribuição de:
 
 - **Yasmin Barcelos** - Desenvolvedor Full Stack, especializado em Java e Spring Boot. Contribuiu com a implementação da lógica de negócios, integração com bancos de dados e configuração do Spring Boot.
   Veja o perfil de Yasmin Barcelos no [GitHub](https://github.com/yxsbx).
+
+  ***
+
+# NeuroChatIA: Project Documentation
+
+## Table of Contents
+1. [Introduction](#introduction)
+2. [Architectural Diagram](#architectural-diagram)
+3. [Project Directory Structure](#project-directory-structure-for-neurochatia)
+4. [Spring Boot Configuration](#spring-boot-configuration)
+5. [Integration with SQL Databases](#integration-with-sql-databases)
+6. [REST API for League of Legends Champions](#rest-api-for-league-of-legends-champions)
+7. [Artificial Intelligence with Spring Cloud OpenFeign](#artificial-intelligence-with-spring-cloud-openfeign)
+8. [User Interface with HTML, CSS, and JavaScript](#user-interface-with-html-css-and-javascript)
+9. [Contributors](#contributors)
+
+## Introduction
+The **NeuroChatIA** project is a system that combines Java programming language fundamentals with Spring Boot framework configurations. Our main focus is on Object-Oriented Programming and integration with SQL databases through Spring Data JDBC. The goal is to develop a REST API covering design, development, and documentation, with a focus on League of Legends champions. The API will be deployed on AWS Elastic Beanstalk. Additionally, we will incorporate an Artificial Intelligence (AI) layer to optimize the API, using Spring Cloud OpenFeign for integration with AI APIs provided by major providers like OpenAI (GPT) and Google (Gemini). The user interface will be built to interact with the API, exploring basic concepts of HTML, CSS, and JavaScript.
+
+## Architectural Diagram
+Below is the architectural diagram of the project, highlighting the separation of responsibilities among layers. From the user interface to interactions with external systems, passing through adapters, use cases, and core domain entities, each element is strategically positioned to reinforce system modularity, scalability, and maintainability. This structure facilitates understanding of how components collaborate to achieve software goals, aligning with Clean Architecture principles.
+
+```mermaid
+  graph RL;
+    subgraph layer-infra[Infrastructure];
+      UI("Frontend (UI)") ---> Controller
+      subgraph layer-adpaters[Adapters];
+        Controller("Controllers") <--> UC
+        subgraph layer-app[Application];
+          UC(Use Cases) <--> layer-entities
+          subgraph layer-entities["Entities (Domain)"];
+            Model("Models")
+            IPort("Port Interfaces (Gateways)")
+          end
+       end
+       Repo("Repositories") -..-> |implement| IPort
+       HTTP("HTTP Clients") -..-> |implement| IPort
+      end
+      BD("SQL Databases") --- Repo
+      EXT("AI REST APIs") --- HTTP
+    end
+  
+  classDef infra fill:#a3c9ff,stroke:#00315c,color:#00315c;
+  classDef adapters fill:#67dbb1,stroke:#003828,color:#003828;
+  classDef ucs fill:#ffb1c1,stroke:#5f112b,color:#5f112b;
+  classDef entities fill:#e2c54b,stroke:#3a3000,color:#3a3000;
+  
+  class BD,EXT,UI infra;
+  class Controller,Repo,HTTP adapters;
+  class UC ucs;
+  class Model,IPort entities;
+```
+
+classDef infra fill:#a3c9ff,stroke:#00315c,color:#00315c;
+classDef adapters fill:#67dbb1,stroke:#003828,color:#003828;
+classDef ucs fill:#ffb1c1,stroke:#5f112b,color:#5f112b;
+classDef entities fill:#e2c54b,stroke:#3a3000,color:#3a3000;
+
+class BD,EXT,UI infra;
+class Controller,Repo,HTTP adapters;
+class UC ucs;
+class Model,IPort entities;
+
+## Project Directory Structure for NeuroChatIA
+
+The **NeuroChatIA** project follows a directory structure inspired by Clean Architecture principles, aiming for clear separation of responsibilities and promoting autonomy of layers in a Spring Boot project. This approach not only facilitates code maintenance and evolution but also supports effective integration and collaboration among different parts of the application. Below, we detail the layout of directories that compose the application, each playing a specific role within the software ecosystem:
+
+- **adapters/**: Adapters for communication between the application and the outside world, including REST controllers and persistence components.
+
+- **in/**: Input adapters, handling user requests.
+
+- **out/**: Output adapters, responsible for interacting with databases and external APIs.
+
+- **application/**: Application use cases, encapsulating business logic.
+
+- **domain/**: Entities, exceptions, and interfaces defining domain business rules.
+
+- **exception/**: Custom domain-relevant exceptions.
+
+- **model/**: Data models representing core application concepts.
+
+- **ports/**: Interfaces delineating contracts for adapters and external services.
+
+- **Application.java**: Main class configuring and starting the Spring Boot application.
+
+## Spring Boot Configuration
+
+The Spring Boot configuration in the **NeuroChatIA** project involves defining various classes and components that enable the initialization and execution of the application efficiently and robustly. Some key configurations include:
+
+- **Main Class (`Application.java`)**: This class contains the `main()` method responsible for starting the Spring Boot application. It's also used to configure core Spring components such as beans, package scanning, and application properties.
+
+- **Database Configuration**: Spring Boot allows easy configuration of database connection through properties in `application.properties` or `application.yml`. In the case of **NeuroChatIA**, we're using the H2 database to store League of Legends champions' data.
+
+- **REST API Configuration**: Using annotations like `@RestController`, `@RequestMapping`, and `@Autowired`, we define REST endpoints exposing functionalities related to champions. Spring Boot automatically manages JSON data serialization and deserialization.
+
+- **Security Configuration**: We can easily integrate and configure security modules like authentication and authorization using Spring Security dependencies.
+
+## Integration with SQL Databases
+
+In the **NeuroChatIA** project, we use the H2 database to model the domain of League of Legends champions. This enables quick and efficient prototyping, allowing storage of detailed information about each champion.
+
+## REST API for League of Legends Champions
+
+The REST API in **NeuroChatIA** provides operations to access information about League of Legends champions. Some example endpoints that can be implemented include:
+
+- `GET /api/champions`: Returns the list of all available champions.
+- `GET /api/champions/{id}`: Returns details of a specific champion with the provided ID.
+- `POST /api/champions`: Creates a new champion based on provided data.
+- `PUT /api/champions/{id}`: Updates information of an existing champion with the provided ID.
+- `DELETE /api/champions/{id}`: Removes a champion with the provided ID.
+
+These endpoints are implemented in Spring Boot's REST controllers and are accessible via HTTP requests.
+
+## Artificial Intelligence with Spring Cloud OpenFeign
+
+To incorporate Artificial Intelligence (AI) into **NeuroChatIA**, we use Spring Cloud OpenFeign to easily integrate with AI APIs from major providers like OpenAI (GPT) and Google (Gemini). Some important steps of this integration include:
+
+- **Definition of Client Interfaces**: We create client interfaces with Feign annotations to define endpoints and operations that will be consumed from external AI APIs.
+
+- **Feign Client Configuration**: Using annotations like `@Feign
+
+Client` and `@RequestMapping`, we configure and inject Feign clients to communicate with external AI APIs.
+
+- **Integration with AI Services**: We can then directly call methods of Feign clients in our code to interact with external AI services, like generating text based on specific input.
+
+## User Interface with HTML, CSS, and JavaScript
+
+The user interface (UI) of **NeuroChatIA** is built using basic concepts of HTML, CSS, and JavaScript to provide an interactive and user-friendly experience. Some important elements of the interface include:
+
+- **HTML Pages**: We create various HTML pages to represent different parts of the application, such as home page, champion views, and interaction forms.
+
+- **Styling with CSS**: We use CSS stylesheets to style HTML elements, including colors, fonts, sizes, and layouts.
+
+- **Dynamic Interactions with JavaScript**: We incorporate JavaScript scripts to add dynamic behaviors to the UI, such as form validation, asynchronous data loading, and interactivity with page elements.
+
+## Contributors
+
+The **NeuroChatIA** project was developed with contributions from:
+
+- **Daniel Martins** - Full Stack Developer, specializing in Java and Spring Boot. Contributed to business logic implementation, database integration, and Spring Boot configuration.
+  See Daniel Martins' profile on [GitHub](https://github.com/Danielmadr).
+
+- **Yasmin Barcelos** - Full Stack Developer, specializing in Java and Spring Boot. Contributed to business logic implementation, database integration, and Spring Boot configuration.
+  See Yasmin Barcelos' profile on [GitHub](https://github.com/yxsbx).
